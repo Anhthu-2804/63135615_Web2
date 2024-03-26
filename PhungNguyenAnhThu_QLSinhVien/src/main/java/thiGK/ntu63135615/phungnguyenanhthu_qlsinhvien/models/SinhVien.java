@@ -33,4 +33,13 @@ public class SinhVien {
     public void setDiemTichLuy(int diemTichLuy) {
         this.diemTichLuy = diemTichLuy;
     }
+
+    @Override
+    public String toString() {
+        return "SinhVien{" +
+                "maSV='" + maSV + '\'' +
+                ", name='" + name + '\'' +
+                ", diemTichLuy=" + diemTichLuy +
+                '}';
+    }
 }
