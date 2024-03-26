@@ -29,5 +29,22 @@ public class SinhVienServiceImpl {
         return "khong tim thay";
     }
 
+    // Service tìm kiếm thông tin qua mã
+    public SinhVien timKiemTheoMa(String ma) {
+        return dsSinhVien.stream()
+                .filter(sinhVien -> sinhVien.getMaSV().equals(ma))
+                .findFirst()
+                .orElse(null);
+    }
+
+    // Service trả về toàn bộ danh sách sinh viên
+    public List<SinhVien> layToanBoSinhVien() {
+        return dsSinhVien;
+    }
+
+    // Service thêm mới một phần tử vào danh sách
+    public void themSinhVien(SinhVien sinhVienMoi) {
+        dsSinhVien.add(sinhVienMoi);
+    }
 
 }

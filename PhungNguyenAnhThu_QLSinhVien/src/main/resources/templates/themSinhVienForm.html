@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Them danh sach sinh vien</title>
+</head>
+<body>
+
+<div align="center">
+    <h1>Thêm mới sinh viên</h1>
+    <form action="#" th:action="@{/themMoiSV}" method="post" th:object="${sv}">
+        <label>Mã số SV:</label>
+        <input type="text" th:field="*{maSV}" /><br/>
+
+        <label>Họ và Tên:</label>
+        <input type="text" th:field="*{name}" /><br/>
+
+        <label>Họ và Tên:</label>
+        <input type="text" th:field="*{diemTichLuy}" /><br/>
+        <button type="submit">Thực hiện thêm</button>
+    </form>
+</div>
+
+</body>
+</html>

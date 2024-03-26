@@ -34,6 +34,10 @@ public class SinhVien {
         this.diemTichLuy = diemTichLuy;
     }
 
+    public SinhVien() {
+        super();
+    }
+
     @Override
     public String toString() {
         return "SinhVien{" +
