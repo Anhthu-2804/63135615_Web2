@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>Kết Quả Tìm Kiếm</h2>
+<div th:if="${ketQuaTimKiem}">
+  <p>Mã Sinh Viên: <span th:text="${ketQuaTimKiem.maSV}"></span></p>
+  <p>Tên: <span th:text="${ketQuaTimKiem.name}"></span></p>
+  <p>Điểm Tích Lũy: <span th:text="${ketQuaTimKiem.diemTichLuy}"></span></p>
+</div>
+<div th:if="${ketQuaTimKiem == null}">
+  <p>Không tìm thấy sinh viên.</p>
+</div>
+
+</body>
+</html>

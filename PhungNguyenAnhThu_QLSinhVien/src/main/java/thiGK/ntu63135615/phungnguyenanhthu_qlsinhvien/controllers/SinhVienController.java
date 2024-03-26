@@ -36,5 +36,6 @@ public class SinhVienController {
     public String timKiemSinhVienTheoMa(@RequestParam("maSinhVien") String maSinhVien, Model model) {
         SinhVien sinhVien = sinhVienService.timKiem(maSinhVien);
         model.addAttribute("ketQuaTimKiem", sinhVien);
-        return "ketquaTimKiem";
+        return "timKiemOK";
+    }
 }
