@@ -14,6 +14,11 @@ import java.util.List;
 @Service
 public class SinhVienServiceImpl {
     static List<SinhVien> dsSinhVien=  new ArrayList<SinhVien>();
+
+    public static List<SinhVien> getDsSinhVien() {
+        return dsSinhVien;
+    }
+
     static {
         dsSinhVien.add(new SinhVien("1","a",1));
         dsSinhVien.add(new SinhVien("2","b",2));
@@ -21,16 +26,16 @@ public class SinhVienServiceImpl {
         dsSinhVien.add(new SinhVien("4","d",4));
 
     }
-    public String timKiem(String ms){
-        for (SinhVien e: dsSinhVien){
-            if (e.getMaSV().equals(ms));
-                return e.toString();
-        }
-        return "khong tim thay";
-    }
+//    public String timKiem(String ms){
+//        for (SinhVien e: dsSinhVien){
+//            if (e.getMaSV().equals(ms));
+//                return e.toString();
+//        }
+//        return "khong tim thay";
+//    }
 
     // Service tìm kiếm thông tin qua mã
-    public SinhVien timKiemTheoMa(String ma) {
+    public SinhVien timKiem(String ma) {
         return dsSinhVien.stream()
                 .filter(sinhVien -> sinhVien.getMaSV().equals(ma))
                 .findFirst()
@@ -45,6 +50,7 @@ public class SinhVienServiceImpl {
     // Service thêm mới một phần tử vào danh sách
     public void themSinhVien(SinhVien sinhVienMoi) {
         dsSinhVien.add(sinhVienMoi);
+
     }
 
 }
