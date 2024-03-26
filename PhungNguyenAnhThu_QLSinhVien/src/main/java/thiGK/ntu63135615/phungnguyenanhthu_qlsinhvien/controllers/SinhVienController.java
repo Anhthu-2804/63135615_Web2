@@ -32,9 +32,9 @@ public class SinhVienController {
         return "themSinhVien_TB";
     }
 
-    @GetMapping("/{ma}")
-    public SinhVien timKiemTheoMa(@PathVariable String ma) {
-        return sinhVienService.timKiem(ma);
-    }
-    
+    @GetMapping("/timkiemsv")
+    public String timKiemSinhVienTheoMa(@RequestParam("maSinhVien") String maSinhVien, Model model) {
+        SinhVien sinhVien = sinhVienService.timKiem(maSinhVien);
+        model.addAttribute("ketQuaTimKiem", sinhVien);
+        return "ketquaTimKiem";
 }

@@ -6,7 +6,11 @@
 </head>
 <body>
 
-
+<h2>Tìm Kiếm Sinh Viên Theo Mã</h2>
+<form th:action="@{/timkiemsv}" method="get">
+    <input type="text" name="maSinhVien" placeholder="Nhập mã sinh viên">
+    <button type="submit">Tìm Kiếm</button>
+</form>
 
 </body>
 </html>
