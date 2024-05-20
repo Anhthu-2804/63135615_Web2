@@ -35,6 +35,9 @@ public class SanPhamController {
         return "SanPhamView/timKiemSP";
     }
 
+    @GetMapping("/danhmucSP")
+    public String getALLCategory(Model model){
 
+    }
 
 }
