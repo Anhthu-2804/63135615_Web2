@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity                        // đánh dấu rằng đây là một entity
+@Entity
 @Table(name = "loaisanpham")
 @Data
 public class LoaiSanPham {
@@ -18,4 +20,7 @@ public class LoaiSanPham {
 
     @Column(name = "TENLOAISANPHAM")
     private String name;
+
+    @OneToMany(mappedBy = "loaiSanPham", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<SanPham> sanPhams;
 }

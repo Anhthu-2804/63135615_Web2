@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Danh sách Khách hàng</title>
+    <title>Danh sách San Pham</title>
 </head>
 <body>
 <h1>Danh sách khách h</h1>
@@ -14,19 +14,16 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="kh : ${dsSanPham}">
-        <td th:text="${kh.id}" />
-        <td th:text="${kh.maLoaiSP}" />
-        <td th:text="${kh.name}" />
-        <td th:text="${kh.moTa}" />
-        <td th:text="${kh.donGia}" />
-        <td th:text="${kh.sl}" />
-        <td th:text="${kh.hinhDang}" />
-        <td th:text="${kh.maNCC}" />
-        <td th:text="${kh.thanhPhan}" />
-        <td th:text="${kh.xuatXu}" />
-        <td th:text="${kh.img}" />
-    </tr>
+    <tr th:each="sp : ${dsSanPham}">
+        <td th:text="${sp.name}" />
+        <td th:text="${sp.moTa}" />
+        <td th:text="${sp.donGia}" />
+        <td th:text="${sp.sl}" />
+        <td th:text="${sp.hinhDang}" />
+        <td th:text="${sp.maNCC}" />
+        <td th:text="${sp.thanhPhan}" />
+        <td th:text="${sp.xuatXu}" />
+        <td th:text="${sp.img}"></td> </tr>
     </tbody>
 </table>
 </body>

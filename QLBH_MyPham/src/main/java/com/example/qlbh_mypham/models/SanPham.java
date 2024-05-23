@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity                        // đánh dấu rằng đây là một entity
+@Entity
 @Table(name = "sanpham")
 @Data
 public class SanPham {
@@ -15,9 +15,6 @@ public class SanPham {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MASANPHAM")
     private int id;
-
-    @Column(name = "MALOAISANPHAM")
-    private String maLoaiSP;
 
     @Column(name = "TENSP")
     private String name;
@@ -46,20 +43,7 @@ public class SanPham {
     @Column(name = "HINHANH")
     private String img;
 
-    @Override
-    public String toString() {
-        return "SanPham{" +
-                "id=" + id +
-                ", maLoaiSP='" + maLoaiSP + '\'' +
-                ", name='" + name + '\'' +
-                ", moTa='" + moTa + '\'' +
-                ", donGia='" + donGia + '\'' +
-                ", sl='" + sl + '\'' +
-                ", hinhDang='" + hinhDang + '\'' +
-                ", maNCC='" + maNCC + '\'' +
-                ", thanhPhan='" + thanhPhan + '\'' +
-                ", xuatXu='" + xuatXu + '\'' +
-                ", img='" + img + '\'' +
-                '}';
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MALOAISANPHAM", referencedColumnName = "MALOAISANPHAM")
+    private LoaiSanPham loaiSanPham;
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách sản phẩm</title>
+</head>
+<body>
+<h1>Danh sách sản phẩm</h1>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Mã SP</th>
+    <th>Mã Loại SP</th>
+    <th>Tên</th>
+    <th>Mô Tả</th>
+    <th>Đơn Giá</th>
+    <th>Số Lượng</th>
+    <th>Hình Dạng</th>
+    <th>Mã NCC</th>
+    <th>Thành Phần</th>
+    <th>Xuất Xứ</th>
+    <th>Hình Ảnh</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="sp : ${sanPhamPage.content}">
+    <td th:text="${sp.name}"></td>
+    <td th:text="${sp.moTa}"></td>
+    <td th:text="${sp.donGia}"></td>
+    <td th:text="${sp.sl}"></td>
+    <td th:text="${sp.hinhDang}"></td>
+    <td th:text="${sp.maNCC}"></td>
+    <td th:text="${sp.thanhPhan}"></td>
+    <td th:text="${sp.xuatXu}"></td>
+    <td th:text="${sp.img}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<div>
+  <span th:text="'Trang ' + (${currentPage} + 1) + ' của ' + ${totalPages}"></span>
+  <div>
+    <a th:if="${currentPage > 0}" th:href="@{/phantrang(page=${currentPage - 1})}">Trang trước</a>
+    <a th:if="${currentPage < totalPages - 1}" th:href="@{/phantrang(page=${currentPage + 1})}">Trang sau</a>
+  </div>
+</div>
+
+
+
+</body>
+</html>

@@ -4,8 +4,11 @@ import com.example.qlbh_mypham.models.SanPham;
 import com.example.qlbh_mypham.repositories.SanPhamRepository;
 import com.example.qlbh_mypham.services.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -22,15 +25,10 @@ public class SanPhamServiceImp implements SanPhamService {
     public List<SanPham> getAllSanPham() {
         return sanPhamRepository.findAll();
     }
-
-//    @Override
-//    public SanPham findSanPhamByID(int id) {
-//        Optional<SanPham> opt = sanPhamRepository.findById( id);
-//        if (opt.isPresent())
-//            return opt.get();
-//        else
-//            return null;
-//    }
+    @Override
+    public List<SanPham> getAllSanPhamByLoaiSanPhamId(int loaiSP_ID){
+        return sanPhamRepository.findSanPhamByLoaiSanPhamId(loaiSP_ID);
+    } // liet ke ra san pham theo loai san pham
 
     @Override
     public SanPham addSanPham(SanPham sanPham) {
@@ -46,5 +44,10 @@ public class SanPhamServiceImp implements SanPhamService {
         else {
             throw new RuntimeException("Không thể xóa sản phẩm. ID không tồn tại trong danh sách sản phẩm.");
         }
+    }
+
+    @Override
+    public Page<SanPham> findPaginated(Pageable pageable) {
+        return sanPhamRepository.findAll(pageable);
     }
 }

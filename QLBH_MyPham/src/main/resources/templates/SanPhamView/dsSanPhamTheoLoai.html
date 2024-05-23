@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="sp : ${timKiemSP}">
+    <tr th:each="sp : ${dsSPTheoLoai}">
         <td th:text="${sp.name}"></td>
         <td th:text="${sp.moTa}"></td>
         <td th:text="${sp.donGia}"></td>
@@ -33,7 +33,7 @@
         <td th:text="${sp.thanhPhan}"></td>
         <td th:text="${sp.xuatXu}"></td>
         <td th:text="${sp.img}"></td>
-        </tr>
+    </tr>
     </tbody>
 </table>
 </body>
