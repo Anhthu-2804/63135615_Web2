@@ -64,4 +64,11 @@ public class SanPhamController {
         return "SanPhamView/phantrang";
     }
 
+    @GetMapping("/chitietsanpham/{id}")
+    public String getChiTietSanPham(@PathVariable("id") int id, Model model) {
+        SanPham sanPham = sanPhamService.getSanPhamById(id);
+        model.addAttribute("sanPham", sanPham);
+        return "chitietSanPham";
+    }
+
 }

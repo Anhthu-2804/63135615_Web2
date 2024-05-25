@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .product-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            flex: 1;
+        }
+
+        .product-details {
+            flex: 2;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0 10px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            color: #007BFF;
+            margin: 10px 0;
+        }
+
+        .product-description,
+        .product-origin {
+            font-size: 16px;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .product-quantity {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .quantity-label {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .quantity-input {
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-add-to-cart {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-buy-now {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .btn-buy-now:hover {
+            background-color: #218838;
+        }
+
+        .cart-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: #007BFF;
+            cursor: pointer;
+        }
+
+        .cart-icon:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="product-container">
+    <img th:src="@{'/img/' + ${sanPham.img}}" alt="Hình ảnh sản phẩm" class="product-image">
+    <div class="product-details">
+        <h1 class="product-title" th:text="${sanPham.name}">Tên sản phẩm</h1>
+        <p class="product-price" th:text="${sanPham.donGia} + ' VND'">Giá sản phẩm</p>
+        <p class="product-description" th:text="${sanPham.moTa}">Mô tả sản phẩm</p>
+        <p class="product-origin" th:text="'Xuất xứ: ' + ${sanPham.xuatXu}">Xuất xứ sản phẩm</p>
+        <div class="product-quantity">
+            <label for="quantity" class="quantity-label">Số lượng:</label>
+            <input type="number" id="quantity" name="quantity" class="quantity-input" value="1" min="1">
+        </div>
+        <div class="product-actions">
+            <button class="btn btn-add-to-cart">Thêm vào giỏ hàng</button>
+            <button class="btn btn-buy-now">Mua Ngay</button>
+        </div>
+        <a href="/cart" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+</div>
+</body>
+</html>

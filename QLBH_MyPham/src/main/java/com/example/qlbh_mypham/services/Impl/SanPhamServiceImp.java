@@ -50,4 +50,10 @@ public class SanPhamServiceImp implements SanPhamService {
     public Page<SanPham> findPaginated(Pageable pageable) {
         return sanPhamRepository.findAll(pageable);
     }
+
+    @Override
+    public SanPham getSanPhamById(int id) {
+        Optional<SanPham> optionalSanPham = sanPhamRepository.findById(id);
+        return optionalSanPham.orElse(null);
+    }
 }

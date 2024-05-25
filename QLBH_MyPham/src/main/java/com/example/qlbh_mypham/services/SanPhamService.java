@@ -14,5 +14,6 @@ public interface SanPhamService {
     List<SanPham> getAllSanPhamByLoaiSanPhamId(int loaiSP_ID);
     SanPham addSanPham(SanPham sanPham);
     void deleteSanPham(int id);
-    public Page<SanPham> findPaginated(Pageable pageable);
+    Page<SanPham> findPaginated(Pageable pageable);
+    SanPham getSanPhamById(int id);
 }

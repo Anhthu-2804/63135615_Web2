@@ -1,40 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả tìm kiếm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .search-results {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0 10px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            color: #007BFF;
+            margin: 10px 0;
+        }
+
+        .btn-view-details {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-view-details:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<h1>Danh sách sản phẩm</h1>
-<table border="1">
-    <thead>
-    <tr>
-        <th>Mã SP</th>
-        <th>Mã Loại SP</th>
-        <th>Tên</th>
-        <th>Mô Tả</th>
-        <th>Đơn Giá</th>
-        <th>Số Lượng</th>
-        <th>Hình Dạng</th>
-        <th>Mã NCC</th>
-        <th>Thành Phần</th>
-        <th>Xuất Xứ</th>
-        <th>Hình Ảnh</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="sp : ${timKiemSP}">
-        <td th:text="${sp.name}"></td>
-        <td th:text="${sp.moTa}"></td>
-        <td th:text="${sp.donGia}"></td>
-        <td th:text="${sp.sl}"></td>
-        <td th:text="${sp.hinhDang}"></td>
-        <td th:text="${sp.maNCC}"></td>
-        <td th:text="${sp.thanhPhan}"></td>
-        <td th:text="${sp.xuatXu}"></td>
-        <td th:text="${sp.img}"></td>
-        </tr>
-    </tbody>
-</table>
+<div class="search-results">
+    <div th:each="sp : ${timKiemSP}" class="product-card">
+        <img th:src="@{'/img/' + ${sp.img}}" alt="Hình ảnh sản phẩm" class="product-image">
+        <h1 class="product-title" th:text="${sp.name}">Tên sản phẩm</h1>
+        <p class="product-price" th:text="${sp.donGia} + ' VND'">Giá sản phẩm</p>
+        <a th:href="@{'/sanpham/chitietsanpham/' + ${sp.id}}" class="btn-view-details">Xem chi tiết</a>
+    </div>
+</div>
 </body>
 </html>
