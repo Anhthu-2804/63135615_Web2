@@ -2,124 +2,370 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Danh sách Sản Phẩm</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
-<!--    <link rel="shortcut icon" href="image/logo.png">-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        ::-webkit-scrollbar{
+            width: 15px;
+        }
+        ::-webkit-scrollbar-track{
+            border-radius: 5px;
+            box-shadow: inset 0 0 10px #0ad7f5;
+        }
+        ::-webkit-scrollbar-thumb{
+            border-radius: 5px;
+            background: linear-gradient(to top, #5dcaea , #f3f3f3);
+        }
+        section{
+            width: 100%;
+            height: 10vh;
+            background-image: url(static/img/pic1.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+        .search-container {
+            position: relative;
+            width: 300px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-size: 16px;
+            transition: width 0.4s ease;
+        }
+        .search-input:focus,
+        .search-input:hover {
+            width: 400px;
+            border-color: #007BFF;
+            outline: none;
+        }
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #888;
+        }
+        section nav{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            box-shadow: 0 0 8px rgba(0,0,0,0.6);
+            background: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+        section nav .logo{
+            font-size: 35px;
+            color: #0ad7f5;
+            margin: 5px 0;
+            cursor: pointer;
+            position: relative;
+            left: -4%;
+        }
+        section nav .logo span{
+            color: #6c14d0;
+            text-decoration: underline;
+        }
+        section nav ul{
+            list-style: none;
+        }
+        section nav ul li{
+            display: inline-block;
+            margin: 5px 15px;
+        }
+        section nav ul li a{
+            text-decoration: none;
+            color: black;
+            transition: 0.2s;
+        }
+        section nav ul li a:hover{
+            color: #c72092;
+        }
+        section nav .icons i{
+            margin: 0 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        section nav .icons i:hover{
+            color: #c72092;
+        }
+        /* Products */
+        .products {
+            width: 100%;
+            padding: 25px 0;
+        }
+        .products h1 {
+            margin: 35px 0;
+            font-size: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #c72092,#6c14d0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .products .box {
+            width: 90%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 25px 0;
+        }
+        .products .box .card {
+            width: 290px;
+            height: 440px;
+            box-shadow: 0 0 8px #0ad7f5;
+            border-radius: 5px;
+            text-align: center;
+            padding: 10px 20px;
+            background: #f6f6f6;
+        }
+        .products .box .card .small_card {
+            display: flex;
+            flex-flow: column;
+            position: absolute;
+            margin: 10px 0;
+            transform: translateX(-20px);
+            transition: 0.3s;
+            opacity: 0;
+        }
+        .products .box .card:hover .small_card {
+            transform: translateX(2px);
+            cursor: pointer;
+            opacity: 1;
+        }
+        .products .box .card .image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .products .box .card .image img {
+            width: 150px;
+            margin: 15px 0;
+            transition: 0.3s;
+        }
+        .products .box .card:hover .image img {
+            transform: scale(1.1);
+        }
+        .products .box .card .small_card i {
+            width: 45px;
+            height: 45px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 2px 0;
+            line-height: 40px;
+            border: 2px solid #999999;
+            transition: 0.2s;
+        }
+        .products .box .card .small_card i:hover {
+            color: #c72092;
+        }
+        .products .box .card .products_text h2 {
+            font-size: 30px;
+            margin-top: 15px;
+        }
+        .products .box .card .products_text p {
+            color: #91919191;
+            line-height: 21px;
+            margin: 8px 0;
+        }
+        .products .box .card .products_text h3 {
+            margin: 7px 0;
+        }
+        .products .box .card .products_text .products_star {
+            color: orange;
+            margin-bottom: 19px;
+            cursor: pointer;
+        }
+        .products .box .card .products_text .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            background: linear-gradient(to right, #5dcaea , #24eae2f5);
+            color: white;
+        }
+        /* Footer */
+        footer {
+            width: 100%;
+        }
+        footer .footer_main {
+            width: 100%;
+            background: #f3f1f1;
+            display: flex;
+            justify-content: space-around;
+        }
+        footer .footer_main .tag {
+            margin: 10px 0;
+        }
+        footer .footer_main .tag .center {
+            text-align: center;
+        }
+        footer .footer_main .tag h1 {
+            font-size: 25px;
+            margin: 25px 0;
+            color: #1c0080;
+        }
+        footer .footer_main .tag a {
+            display: block;
+            color: black;
+            text-decoration: none;
+            margin: 9px 0;
+        }
+        footer .footer_main .tag a i {
+            padding: 0 10px;
+            transition: 0.3s;
+        }
+        footer .footer_main .tag a i:hover {
+            color: #c72092;
+        }
+        footer .footer_main .tag .social_link {
+            display: flex;
+        }
+        footer .footer_main .tag .social_link a {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            box-shadow: 0 0 20px 10px rgba(0,0,0,0.05);
+            position: relative;
+            margin: 0 5px;
+            z-index: 10;
+            overflow: hidden;
+        }
+        footer .footer_main .tag .social_link a .fa-brands {
+            font-size: 15px;
+            line-height: 30px;
+            z-index: 10;
+            position: relative;
+            transition: 0.5s;
+        }
+        footer .footer_main .tag .social_link a:hover i {
+            color: white;
+        }
+        footer .footer_main .tag .social_link a::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -90px;
+            background: linear-gradient(-45deg, #c72092 , #6c14d0);
+            position: absolute;
+            z-index: -10;
+            transition: 0.5s;
+        }
+        footer .footer_main .tag .social_link a:hover::after {
+            left: 0;
+        }
+        footer .footer_main .tag .search_bar {
+            width: 230px;
+            height: 30px;
+            background: rgb(202, 202, 202);
+            border-radius: 25px;
+        }
+        footer .footer_main .tag .search_bar input {
+            width: 200px;
+            padding: 2px 0;
+            position: relative;
+            top: 17%;
+            left: 6%;
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 13px;
+        }
+        footer .footer_main .tag .search_bar button {
+            padding: 7px 15px;
+            background: linear-gradient(to right, #c72092 , #6c14d0);
+            border: none;
+            margin-top: 15px;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
 </head>
-
-
 <body>
-
 <section>
     <nav>
         <div class="logo">
             <h1>ANH TH<span>Ư</span></h1>
         </div>
-
         <ul>
-            <li><a href="#Home">Home</a></li>
-            <li><a href="#Products">Products</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="danhsachSP.html">Products</a></li>
             <li><a href="#About">About</a></li>
             <li><a href="#Review">Review</a></li>
             <li><a href="#Services">Services</a></li>
             <li>
                 <form th:action="@{/sanpham/findByName}" method="get" class="search-container">
                     <input type="text" name="name" class="search-input" placeholder="Search...">
-
                 </form>
             </li>
-
-
-
         </ul>
-
         <div class="icons">
             <i class="fa-solid fa-heart"></i>
             <i class="fa-solid fa-cart-shopping"></i>
-            <i class="fa-solid fa-user">
-            </i>
+            <i class="fa-solid fa-user"></i>
         </div>
-
     </nav>
+</section>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <h3>Danh Mục Sản Phẩm</h3>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="danhMuc : ${danhMucList}">
+                    <a th:href="@{/sanpham(maloai=${danhMuc.id})}" th:text="${danhMuc.tenLoai}"></a>
 
-    <div class="main" id="Home">
-        <div class="main_content">
-            <div class="main_text">
-                <h1>Let's<br><span>Shopping</span></h1>
-                <p>
-                    GIỜ VÀNG GIẢM GIÁ SỐC --> 50% CHO 50 NGƯỜI
-                    NHANH NHẤT KHI THAM GIA VÀO CHƯƠNG TRÌNH BỐC
-                    THĂM TRÚNG THƯỞNG --> NHẬN VOUCHER TÍCH LŨY.
-                </p>
-            </div>
-            <div id="carouselExampleIndicators" class="carousel slide main_image" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="/img/background1.jpg" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="/img/background.jpg" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="/img/background3.jpg" alt="Third slide">
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <h3>Danh Sách Sản Phẩm</h3>
+            <div class="row">
+                <div class="col-md-4 mb-4" th:each="sp : ${sanPhamList}">
+                    <div class="card h-100">
+                        <img th:src="@{'/img/' + ${sp.img}}" class="card-img-top" alt="Hình ảnh sản phẩm">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${sp.name}">Tên sản phẩm</h5>
+                            <p class="card-text"><strong>Mô tả:</strong> <span th:text="${sp.moTa}"></span></p>
+                            <p class="card-text"><strong>Hình Dáng:</strong> <span th:text="${sp.hinhDang}"></span></p>
+                            <p class="card-text"><strong>Mô Tả:</strong> <span th:text="${sp.moTa}"></span></p>
+                            <p class="card-text"><strong>Đơn Giá:</strong> <span th:text="${sp.donGia}"></span></p>
+                            <p class="card-text"><strong>Thành Phần:</strong> <span th:text="${sp.thanhPhan}"></span></p>
+                            <p class="card-text"><strong>Xuất Xứ:</strong> <span th:text="${sp.xuatXu}"></span></p>
+                            <a th:href="@{'/sanpham/chitietsanpham/' + ${sp.id}}" class="btn btn-primary">Xem chi tiết sản phẩm</a>
+                        </div>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-        <div class="social_icon">
-            <i class="fa-brands fa-facebook-f"></i>
-            <i class="fa-brands fa-twitter"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-linkedin-in"></i>
-        </div>
-        <div class="button">
-            <a href="#">SHOP NOW</a>
-            <i class="fa-solid fa-chevron-right"></i>
-        </div>
-    </div>
-
-</section>
-
-
-<div class="container mt-5">
-    <h1 class="mb-4">Danh sách sản phẩm</h1>
-    <div class="row">
-        <div class="col-md-4 mb-4" th:each="sp : ${dsSanPham}">
-            <div class="card h-100">
-                <img th:src="@{'/img/' + ${sp.img}}" class="card-img-top" alt="Hình ảnh sản phẩm">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${sp.name}">Tên sản phẩm</h5>
-                    <p class="card-text"><strong>Mô tả:</strong> <span th:text="${sp.moTa}"></span></p>
-                    <p class="card-text"><strong>Hình Dáng:</strong> <span th:text="${sp.hinhDang}"></span></p>
-                    <p class="card-text"><strong>Mô Tả:</strong> <span th:text="${sp.moTa}"></span></p>
-                    <p class="card-text"><strong>Đơn Giá:</strong> <span th:text="${sp.donGia}"></span></p>
-                    <p class="card-text"><strong>Thành Phần:</strong> <span th:text="${sp.thanhPhan}"></span></p>
-                    <p class="card-text"><strong>Xuất Xứ:</strong> <span th:text="${sp.xuatXu}"></span></p>
-                    <a th:href="@{'/sanpham/chitietsanpham/' + ${sp.id}}" class="btn btn-primary">Xem chi tiết sản phẩm</a>
+                <div th:if="${#lists.isEmpty(sanPhamList)}" class="col-12">
+                    <p>Không có sản phẩm nào trong danh mục này.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>

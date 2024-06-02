@@ -26,7 +26,7 @@ html{
 section{
     width: 100%;
     height: 100vh;
-    background-image: url(image/pic29.jpg);
+    background-image: url(static/img/pic1.jpg);
     background-size: cover;
     background-position: center;
 }

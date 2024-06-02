@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -18,5 +19,17 @@ public class UserService {
             return user;
         }
         return Optional.empty();
+    }
+
+    public boolean register(String username, String password) {
+        if (userRepository.findByUsername(username).isPresent()) {
+            return false;
+        }
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        userRepository.save(user);
+        return true;
     }
 }
