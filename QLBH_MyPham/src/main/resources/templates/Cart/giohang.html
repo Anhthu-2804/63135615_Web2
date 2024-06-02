@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sản phẩm</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <div class="product-container">
+    <img th:src="@{'/img/' + ${sanPham.img}}" alt="Hình ảnh sản phẩm" class="product-image">
+    <div class="product-details">
+      <h1 class="product-title" th:text="${sanPham.name}">Tên sản phẩm</h1>
+      <p class="product-price" th:text="${sanPham.donGia} + ' VND'">Giá sản phẩm</p>
+      <p class="product-description" th:text="${sanPham.moTa}">Mô tả sản phẩm</p>
+      <p class="product-origin" th:text="'Xuất xứ: ' + ${sanPham.xuatXu}">Xuất xứ sản phẩm</p>
+      <div class="product-quantity">
+        <label for="quantity" class="quantity-label">Số lượng:</label>
+        <input type="number" id="quantity" name="quantity" class="quantity-input" value="1" min="1">
+      </div>
+      <div class="product-actions">
+        <form th:action="@{'/giohang/add/ '+ ${sanPham.id}}" method="post">
+          <input type="number" name="quantity" class="quantity-input" value="1" min="1">
+          <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

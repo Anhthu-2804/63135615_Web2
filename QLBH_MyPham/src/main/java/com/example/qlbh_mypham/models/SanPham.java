@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -23,7 +25,7 @@ public class SanPham {
     private String moTa;
 
     @Column(name = "DONGIA")
-    private String donGia;
+    private BigDecimal donGia;
 
     @Column(name = "SOLUONG")
     private String sl;

@@ -26,17 +26,18 @@ public class SanPhamController {
     @Autowired
     SanPhamService sanPhamService;
     LoaiSanPhamService loaiSanPhamService;
-    List<SanPham> sanPhamList ;
+    List<SanPham> sanPhamList;
     List<LoaiSanPham> loaiSanPhamList;
+
     @GetMapping("/all")
-    public String getAll(Model model){ // lay toan bo san pham
+    public String getAll(Model model) { // lay toan bo san pham
         sanPhamList = sanPhamService.getAllSanPham();
-        model.addAttribute("dsSanPham",sanPhamList);
+        model.addAttribute("dsSanPham", sanPhamList);
         return "SanPhamView/danhsachSP";
     }
 
-    @GetMapping("/findByName/{name}") // tim kiem theo ten
-    public String findSanPhamByID(@PathVariable String name, Model model) {
+    @GetMapping("/findByName") // tim kiem theo ten
+    public String findSanPhamByID(@RequestParam("name") String name, Model model) {
         sanPhamList = sanPhamService.searchSanPhamByName(name);
         model.addAttribute("timKiemSP", sanPhamList);
         return "SanPhamView/timKiemSP";
@@ -44,7 +45,7 @@ public class SanPhamController {
 
 
     @GetMapping("/sanPhamTheoLoai/{id}")
-    public String getALLSanPhamByLoaiSanPham(Model model, @PathVariable int id){
+    public String getALLSanPhamByLoaiSanPham(Model model, @PathVariable int id) {
         sanPhamList = sanPhamService.getAllSanPhamByLoaiSanPhamId(id);
         model.addAttribute("dsSPTheoLoai", sanPhamList);
         return "SanPhamView/dsSanPhamTheoLoai";

@@ -20,7 +20,10 @@ public class SanPhamServiceImp implements SanPhamService {
     public List<SanPham> searchSanPhamByName(String name) {
         return sanPhamRepository.findByNameContainingIgnoreCase(name); // tim kiem theo ten san pham, k phan biet hoa
     }
-
+    @Override
+    public SanPham findSanPhamById(int id) {
+        return sanPhamRepository.findById(id).orElse(null);
+    }
     @Override
     public List<SanPham> getAllSanPham() {
         return sanPhamRepository.findAll();

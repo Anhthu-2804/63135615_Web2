@@ -16,4 +16,6 @@ public interface SanPhamService {
     void deleteSanPham(int id);
     Page<SanPham> findPaginated(Pageable pageable);
     SanPham getSanPhamById(int id);
+    SanPham findSanPhamById(int id);
+
 }

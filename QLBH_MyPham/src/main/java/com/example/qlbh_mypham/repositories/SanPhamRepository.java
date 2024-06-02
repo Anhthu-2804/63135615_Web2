@@ -13,4 +13,5 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer> {
     List<SanPham> findByNameContainingIgnoreCase(String name); // tim kiem theo ten san pham
     List<SanPham> findSanPhamByLoaiSanPhamId(int loaiSP_Id);
     Page<SanPham> findAll(Pageable pageable);
+
 }
