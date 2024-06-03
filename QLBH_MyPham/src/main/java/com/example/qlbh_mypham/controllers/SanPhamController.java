@@ -72,4 +72,9 @@ public class SanPhamController {
         return "chitietSanPham";
     }
 
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
 }

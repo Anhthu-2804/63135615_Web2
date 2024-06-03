@@ -11,7 +11,7 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             margin: 0;
-            padding-top: 100px; /* Adjusted padding for nav */
+            padding-top: 100px;
         }
         .cart-container {
             background-color: #fff;
@@ -218,7 +218,7 @@
 
         <ul>
             <li><a href="#Home">Home</a></li>
-            <li><a href="#Products">Products</a></li>
+            <li><a href="../sanpham/all">Products</a></li>
             <li><a href="#About">About</a></li>
             <li><a href="#Review">Review</a></li>
             <li><a href="#Services">Services</a></li>
@@ -294,7 +294,8 @@
 <script>
     function updatePrice(element, unitPrice) {
         var quantity = element.value;
-        var priceElement = document.getElementById('price-' + element.id.split('-')[1]);
+        var productId = element.id.split('-')[1];
+        var priceElement = document.getElementById('price-' + productId);
         var newPrice = unitPrice * quantity;
         priceElement.innerText = newPrice.toLocaleString('vi-VN') + ' VND';
         updateTotalPrice();
@@ -321,7 +322,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         var quantityInputs = document.querySelectorAll('input[name="soLuong"]');
         quantityInputs.forEach(function (input) {
-            var unitPrice = parseFloat(input.nextElementSibling.value);
+            var unitPrice = parseFloat(input.getAttribute('data-unit-price'));
             input.setAttribute('data-unit-price', unitPrice);
         });
         updateTotalPrice(); // Initial calculation of total price

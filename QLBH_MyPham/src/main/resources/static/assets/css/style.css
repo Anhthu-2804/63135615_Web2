@@ -26,7 +26,7 @@ html{
 section{
     width: 100%;
     height: 100vh;
-    background-image: url(static/img/pic1.jpg);
+    background-image: url(static/img/background1.jpg);
     background-size: cover;
     background-position: center;
 }
@@ -589,7 +589,7 @@ section .main .button:hover i{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-image: url(image/background3.jpg);
+    background-image: url(static/img/background3.jpg);
     background-size: cover;
     background-position: center;
 }
@@ -752,7 +752,7 @@ footer .footer_main .tag a{
 
 footer .footer_main .tag a i{
     padding: 0 10px;
-    transition: 0.3;
+    transition: 0.3s;
 }
 
 footer .footer_main .tag a i:hover{

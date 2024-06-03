@@ -336,8 +336,8 @@
         <div class="col-md-3">
             <h3>Danh Mục Sản Phẩm</h3>
             <ul class="list-group">
-                <li class="list-group-item" th:each="danhMuc : ${danhMucList}">
-                    <a th:href="@{/sanpham(maloai=${danhMuc.id})}" th:text="${danhMuc.tenLoai}"></a>
+                <li class="list-group-item" th:each="danhMuc : ${dsSPTheoLoai}">
+                    <a th:href="@{/sanpham(maloai=${danhMuc.id})}" th:text="${danhMuc.name}"></a>
 
                 </li>
             </ul>
@@ -345,7 +345,7 @@
         <div class="col-md-9">
             <h3>Danh Sách Sản Phẩm</h3>
             <div class="row">
-                <div class="col-md-4 mb-4" th:each="sp : ${sanPhamList}">
+                <div class="col-md-4 mb-4" th:each="sp : ${dsSanPham}">
                     <div class="card h-100">
                         <img th:src="@{'/img/' + ${sp.img}}" class="card-img-top" alt="Hình ảnh sản phẩm">
                         <div class="card-body">
@@ -360,9 +360,9 @@
                         </div>
                     </div>
                 </div>
-                <div th:if="${#lists.isEmpty(sanPhamList)}" class="col-12">
-                    <p>Không có sản phẩm nào trong danh mục này.</p>
-                </div>
+<!--                <div th:if="${#lists.isEmpty(sanPhamList)}" class="col-12">-->
+<!--                    <p>Không có sản phẩm nào trong danh mục này.</p>-->
+<!--                </div>-->
             </div>
         </div>
     </div>
